@@ -1,0 +1,29 @@
+name: generate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "00 18 * * 0"
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Build openapi2jsonschema image
+        run: docker build . --file Dockerfile --tag openapi2jsonschema:latest
+
+      - name: Delete folders to regenerate
+        run: "rm -rf standalone/*"
+
+      - name: Generate
+        run: make gen
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Adding new schemas
+          commit_user_name: Onderwijs Infrastructure Bot
+          commit_user_email: buildbot-onderwijs+infrastructure@topicus.nl
+          commit_author: Onderwijs Infrastructure Bot <buildbot-onderwijs+infrastructure@topicus.nl>
