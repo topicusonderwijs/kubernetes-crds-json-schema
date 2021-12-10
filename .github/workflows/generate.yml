@@ -7,6 +7,11 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup GitHub CLI
+        uses: Monorepo-Actions/setup-gh-cli@v1.0.0
+        with:
+          token: ${{ secrets.INFRABOT_TOKEN }}
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
