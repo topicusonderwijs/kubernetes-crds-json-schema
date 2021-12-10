@@ -1,17 +1,29 @@
 #!/bin/bash -xe
 
-OPENAPI2JSONSCHEMABIN="docker run -i -u $(id -u ${USER}):$(id -g ${USER}) -v ${PWD}/standalone:/out/schemas openapi2jsonschema:latest"
+tmp_dir=$(mktemp -d)
+trap 'rm -rf -- "$tmp_dir"' EXIT
+
+OPENAPI2JSONSCHEMABIN="docker run -i -u $(id -u ${USER}):$(id -g ${USER}) -v ${tmp_dir}:/crds -v ${PWD}/standalone:/out/schemas openapi2jsonschema:latest"
 
 get_latest_release() {
-  curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r .tag_name
+  curl -s "https://api.github.com/repos/$1/releases/latest" | jq -r .tag_name
 }
 
-CERTMANAGER_VERSION=$(get_latest_release "jetstack/cert-manager")
+function get_crds_from_latest_release() {
+  gh release download -R $1 -p $2 -D "$tmp_dir/$1"
+  schemas+=( "/crds/$1/$2" )
+}
+
+# Versions
 TRAEFIK_VERSION=$(get_latest_release "traefik/traefik")
 
-SCHEMAS=(
-  https://github.com/jetstack/cert-manager/releases/download/${CERTMANAGER_VERSION}/cert-manager.crds.yaml
-  https://raw.githubusercontent.com/traefik/traefik/${TRAEFIK_VERSION}/integration/fixtures/k8s/01-traefik-crd.yml
-)
+declare -a schemas
 
-$OPENAPI2JSONSCHEMABIN ${SCHEMAS[@]}
+# Add CRDs from latest GitHub release, including private repos
+get_crds_from_latest_release "jetstack/cert-manager" "cert-manager.crds.yaml"
+get_crds_from_latest_release "topicusonderwijs/keyhub-vault-operator" "crds.yaml"
+
+# Add CRDs from GitHub tag
+schemas+=( "https://raw.githubusercontent.com/traefik/traefik/$(get_latest_release "traefik/traefik")/integration/fixtures/k8s/01-traefik-crd.yml" )
+
+$OPENAPI2JSONSCHEMABIN ${schemas[@]}
