@@ -2,6 +2,7 @@
 
 ## Supported CRDs
 - cert-manager
+- keyhub-vault-operator (tool not publicly available)
 - traefik
 
 ## Usage with Kubeconform
