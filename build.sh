@@ -14,13 +14,11 @@ function get_crds_from_latest_release() {
   schemas+=( "/crds/$1/$2" )
 }
 
-# Versions
-TRAEFIK_VERSION=$(get_latest_release "traefik/traefik")
-
 declare -a schemas
 
 # Add CRDs from latest GitHub release, including private repos
 get_crds_from_latest_release "jetstack/cert-manager" "cert-manager.crds.yaml"
+get_crds_from_latest_release "operator-framework/operator-lifecycle-manager" "crds.yaml"
 get_crds_from_latest_release "topicusonderwijs/keyhub-vault-operator" "crds.yaml"
 
 # Add CRDs from GitHub tag
