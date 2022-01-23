@@ -114,6 +114,9 @@
                 "type": "string"
               },
               "type": "array"
+            },
+            "minResponseBodyBytes": {
+              "type": "integer"
             }
           },
           "type": "object",
@@ -522,7 +525,7 @@
               "description": "TLSClientCertificateInfo holds the client TLS certificate info configuration.",
               "properties": {
                 "issuer": {
-                  "description": "TLSClientCertificateDNInfo holds the client TLS certificate distinguished name info configuration. cf https://tools.ietf.org/html/rfc3739",
+                  "description": "TLSClientCertificateIssuerDNInfo holds the client TLS certificate distinguished name info configuration. cf https://tools.ietf.org/html/rfc3739",
                   "properties": {
                     "commonName": {
                       "type": "boolean"
@@ -562,7 +565,7 @@
                   "type": "boolean"
                 },
                 "subject": {
-                  "description": "TLSClientCertificateDNInfo holds the client TLS certificate distinguished name info configuration. cf https://tools.ietf.org/html/rfc3739",
+                  "description": "TLSClientCertificateSubjectDNInfo holds the client TLS certificate distinguished name info configuration. cf https://tools.ietf.org/html/rfc3739",
                   "properties": {
                     "commonName": {
                       "type": "boolean"
@@ -577,6 +580,9 @@
                       "type": "boolean"
                     },
                     "organization": {
+                      "type": "boolean"
+                    },
+                    "organizationalUnit": {
                       "type": "boolean"
                     },
                     "province": {
