@@ -26,10 +26,10 @@ schemas+=( "https://raw.githubusercontent.com/traefik/traefik/$(get_latest_relea
 schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_podmonitors.yaml" )
 schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_probes.yaml" )
 schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_servicemonitors.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_grafanaagents.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_loginstances.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_metricsinstances.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_podlogs.yaml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_grafanaagents.yaml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_loginstances.yaml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_metricsinstances.yaml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_podlogs.yaml" )
 
 
 $OPENAPI2JSONSCHEMABIN ${schemas[@]}
