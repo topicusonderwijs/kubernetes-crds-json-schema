@@ -23,5 +23,6 @@ get_crds_from_latest_release "topicusonderwijs/keyhub-vault-operator" "crds.yaml
 
 # Add CRDs from GitHub tag
 schemas+=( "https://raw.githubusercontent.com/traefik/traefik/$(get_latest_release "traefik/traefik")/integration/fixtures/k8s/01-traefik-crd.yml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_podmonitors.yaml" )
 
 $OPENAPI2JSONSCHEMABIN ${schemas[@]}
