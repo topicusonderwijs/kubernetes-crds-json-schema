@@ -260,6 +260,9 @@
               "status"
             ],
             "properties": {
+              "optional": {
+                "type": "boolean"
+              },
               "resolving": {
                 "type": "string"
               },
