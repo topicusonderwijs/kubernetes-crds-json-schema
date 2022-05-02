@@ -27,7 +27,7 @@ schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release
 schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_probes.yaml" )
 schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_servicemonitors.yaml" )
 schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_grafanaagents.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_loginstances.yaml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_logsinstances.yaml" )
 schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_metricsinstances.yaml" )
 schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_podlogs.yaml" )
 
