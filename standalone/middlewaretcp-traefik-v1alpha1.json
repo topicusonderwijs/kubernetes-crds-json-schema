@@ -1,5 +1,5 @@
 {
-  "description": "MiddlewareTCP is a specification for a MiddlewareTCP resource.",
+  "description": "MiddlewareTCP is the CRD implementation of a Traefik TCP middleware. More info: https://doc.traefik.io/traefik/v2.8/middlewares/overview/",
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -13,12 +13,13 @@
       "type": "object"
     },
     "spec": {
-      "description": "MiddlewareTCPSpec holds the MiddlewareTCP configuration.",
+      "description": "MiddlewareTCPSpec defines the desired state of a MiddlewareTCP.",
       "properties": {
         "inFlightConn": {
-          "description": "TCPInFlightConn holds the TCP in flight connection configuration.",
+          "description": "InFlightConn defines the InFlightConn middleware configuration.",
           "properties": {
             "amount": {
+              "description": "Amount defines the maximum amount of allowed simultaneous connections. The middleware closes the connection if there are already amount connections opened.",
               "format": "int64",
               "type": "integer"
             }
@@ -27,9 +28,10 @@
           "additionalProperties": false
         },
         "ipWhiteList": {
-          "description": "TCPIPWhiteList holds the TCP ip white list configuration.",
+          "description": "IPWhiteList defines the IPWhiteList middleware configuration.",
           "properties": {
             "sourceRange": {
+              "description": "SourceRange defines the allowed IPs (or ranges of allowed IPs by using CIDR notation).",
               "items": {
                 "type": "string"
               },
