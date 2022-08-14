@@ -1,5 +1,5 @@
 {
-  "description": "TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to:  - Apply weight to Services on load-balancing  - Mirror traffic on services More info: https://doc.traefik.io/traefik/v2.8/routing/providers/kubernetes-crd/#kind-traefikservice",
+  "description": "TraefikService is the CRD implementation of a Traefik Service. TraefikService object allows to: - Apply weight to Services on load-balancing - Mirror traffic on services More info: https://doc.traefik.io/traefik/v2.8/routing/providers/kubernetes-crd/#kind-traefikservice",
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
