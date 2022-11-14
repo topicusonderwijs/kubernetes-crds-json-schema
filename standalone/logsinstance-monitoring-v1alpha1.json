@@ -400,7 +400,7 @@
           "additionalProperties": false
         },
         "targetConfig": {
-          "description": "Configures how tailed targets will be watched.",
+          "description": "Configures how tailed targets are watched.",
           "properties": {
             "syncPeriod": {
               "description": "Period to resync directories being watched and files being tailed to discover new ones or stop watching removed ones.",
