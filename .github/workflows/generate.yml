@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup GitHub CLI
-        uses: Monorepo-Actions/setup-gh-cli@v1.0.0
+        uses: Monorepo-Actions/setup-gh-cli@v3
         with:
           token: ${{ secrets.INFRABOT_TOKEN }}
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
 
