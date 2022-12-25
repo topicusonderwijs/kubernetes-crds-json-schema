@@ -230,6 +230,91 @@
           "items": {
             "description": "RemoteWriteSpec defines the remote_write configuration for Prometheus.",
             "properties": {
+              "basicAuth": {
+                "description": "BasicAuth for the URL.",
+                "properties": {
+                  "password": {
+                    "description": "The secret in the service monitor namespace that contains the password for authentication.",
+                    "properties": {
+                      "key": {
+                        "description": "The key of the secret to select from.  Must be a valid secret key.",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+                        "type": "string"
+                      },
+                      "optional": {
+                        "description": "Specify whether the Secret or its key must be defined",
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "key"
+                    ],
+                    "type": "object",
+                    "additionalProperties": false
+                  },
+                  "username": {
+                    "description": "The secret in the service monitor namespace that contains the username for authentication.",
+                    "properties": {
+                      "key": {
+                        "description": "The key of the secret to select from.  Must be a valid secret key.",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
+                        "type": "string"
+                      },
+                      "optional": {
+                        "description": "Specify whether the Secret or its key must be defined",
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "key"
+                    ],
+                    "type": "object",
+                    "additionalProperties": false
+                  }
+                },
+                "type": "object",
+                "additionalProperties": false
+              },
+              "bearerToken": {
+                "description": "BearerToken used for remote_write.",
+                "type": "string"
+              },
+              "bearerTokenFile": {
+                "description": "BearerTokenFile used to read bearer token.",
+                "type": "string"
+              },
+              "headers": {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Headers is a set of custom HTTP headers to be sent along with each remote_write request. Be aware that any headers set by Grafana Agent itself can't be overwritten.",
+                "type": "object"
+              },
+              "metadataConfig": {
+                "description": "MetadataConfig configures the sending of series metadata to remote storage.",
+                "properties": {
+                  "send": {
+                    "description": "Send enables metric metadata to be sent to remote storage.",
+                    "type": "boolean"
+                  },
+                  "sendInterval": {
+                    "description": "SendInterval controls how frequently metric metadata is sent to remote storage.",
+                    "type": "string"
+                  }
+                },
+                "type": "object",
+                "additionalProperties": false
+              },
+              "name": {
+                "description": "Name of the remote_write queue. Must be unique if specified. The name is used in metrics and logging in order to differentiate queues.",
+                "type": "string"
+              },
               "oauth2": {
                 "description": "Oauth2 for URL",
                 "properties": {
@@ -333,91 +418,6 @@
                 ],
                 "type": "object",
                 "additionalProperties": false
-              },
-              "basicAuth": {
-                "description": "BasicAuth for the URL.",
-                "properties": {
-                  "password": {
-                    "description": "The secret in the service monitor namespace that contains the password for authentication.",
-                    "properties": {
-                      "key": {
-                        "description": "The key of the secret to select from.  Must be a valid secret key.",
-                        "type": "string"
-                      },
-                      "name": {
-                        "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                        "type": "string"
-                      },
-                      "optional": {
-                        "description": "Specify whether the Secret or its key must be defined",
-                        "type": "boolean"
-                      }
-                    },
-                    "required": [
-                      "key"
-                    ],
-                    "type": "object",
-                    "additionalProperties": false
-                  },
-                  "username": {
-                    "description": "The secret in the service monitor namespace that contains the username for authentication.",
-                    "properties": {
-                      "key": {
-                        "description": "The key of the secret to select from.  Must be a valid secret key.",
-                        "type": "string"
-                      },
-                      "name": {
-                        "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?",
-                        "type": "string"
-                      },
-                      "optional": {
-                        "description": "Specify whether the Secret or its key must be defined",
-                        "type": "boolean"
-                      }
-                    },
-                    "required": [
-                      "key"
-                    ],
-                    "type": "object",
-                    "additionalProperties": false
-                  }
-                },
-                "type": "object",
-                "additionalProperties": false
-              },
-              "bearerToken": {
-                "description": "BearerToken used for remote_write.",
-                "type": "string"
-              },
-              "bearerTokenFile": {
-                "description": "BearerTokenFile used to read bearer token.",
-                "type": "string"
-              },
-              "headers": {
-                "additionalProperties": {
-                  "type": "string"
-                },
-                "description": "Headers is a set of custom HTTP headers to be sent along with each remote_write request. Be aware that any headers set by Grafana Agent itself can't be overwritten.",
-                "type": "object"
-              },
-              "metadataConfig": {
-                "description": "MetadataConfig configures the sending of series metadata to remote storage.",
-                "properties": {
-                  "send": {
-                    "description": "Send enables metric metadata to be sent to remote storage.",
-                    "type": "boolean"
-                  },
-                  "sendInterval": {
-                    "description": "SendInterval controls how frequently metric metadata is sent to remote storage.",
-                    "type": "string"
-                  }
-                },
-                "type": "object",
-                "additionalProperties": false
-              },
-              "name": {
-                "description": "Name of the remote_write queue. Must be unique if specified. The name is used in metrics and logging in order to differentiate queues.",
-                "type": "string"
               },
               "proxyUrl": {
                 "description": "ProxyURL to proxy requests through. Optional.",
