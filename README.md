@@ -2,6 +2,7 @@
 
 ## Supported CRDs
 - cert-manager
+- Grafana Agent
 - keyhub-vault-operator (tool not publicly available)
 - Operator Lifecycle Manager (OLM)
 - traefik
