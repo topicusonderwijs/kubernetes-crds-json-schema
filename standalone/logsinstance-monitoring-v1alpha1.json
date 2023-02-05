@@ -35,6 +35,7 @@
             "key"
           ],
           "type": "object",
+          "x-kubernetes-map-type": "atomic",
           "additionalProperties": false
         },
         "clients": {
@@ -84,6 +85,7 @@
                       "key"
                     ],
                     "type": "object",
+                    "x-kubernetes-map-type": "atomic",
                     "additionalProperties": false
                   },
                   "username": {
@@ -106,6 +108,7 @@
                       "key"
                     ],
                     "type": "object",
+                    "x-kubernetes-map-type": "atomic",
                     "additionalProperties": false
                   }
                 },
@@ -151,7 +154,7 @@
                 "description": "TLSConfig to use for the client. Only used when the protocol of the URL is https.",
                 "properties": {
                   "ca": {
-                    "description": "Struct containing the CA cert to use for the targets.",
+                    "description": "Certificate authority used when verifying server certificates.",
                     "properties": {
                       "configMap": {
                         "description": "ConfigMap containing data to use for the targets.",
@@ -173,6 +176,7 @@
                           "key"
                         ],
                         "type": "object",
+                        "x-kubernetes-map-type": "atomic",
                         "additionalProperties": false
                       },
                       "secret": {
@@ -195,6 +199,7 @@
                           "key"
                         ],
                         "type": "object",
+                        "x-kubernetes-map-type": "atomic",
                         "additionalProperties": false
                       }
                     },
@@ -206,7 +211,7 @@
                     "type": "string"
                   },
                   "cert": {
-                    "description": "Struct containing the client cert file for the targets.",
+                    "description": "Client certificate to present when doing client-authentication.",
                     "properties": {
                       "configMap": {
                         "description": "ConfigMap containing data to use for the targets.",
@@ -228,6 +233,7 @@
                           "key"
                         ],
                         "type": "object",
+                        "x-kubernetes-map-type": "atomic",
                         "additionalProperties": false
                       },
                       "secret": {
@@ -250,6 +256,7 @@
                           "key"
                         ],
                         "type": "object",
+                        "x-kubernetes-map-type": "atomic",
                         "additionalProperties": false
                       }
                     },
@@ -288,6 +295,7 @@
                       "key"
                     ],
                     "type": "object",
+                    "x-kubernetes-map-type": "atomic",
                     "additionalProperties": false
                   },
                   "serverName": {
@@ -353,6 +361,7 @@
             }
           },
           "type": "object",
+          "x-kubernetes-map-type": "atomic",
           "additionalProperties": false
         },
         "podLogsSelector": {
@@ -397,6 +406,7 @@
             }
           },
           "type": "object",
+          "x-kubernetes-map-type": "atomic",
           "additionalProperties": false
         },
         "targetConfig": {
