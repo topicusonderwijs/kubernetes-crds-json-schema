@@ -18,6 +18,8 @@ declare -a schemas
 
 # Add CRDs from latest GitHub release, including private repos
 get_crds_from_latest_release "jetstack/cert-manager" "cert-manager.crds.yaml"
+get_crds_from_latest_release "kyverno/kyverno" "kyverno.io_clusterpolicies.yaml"
+get_crds_from_latest_release "kyverno/kyverno" "kyverno.io_policies.yaml"
 get_crds_from_latest_release "operator-framework/operator-lifecycle-manager" "crds.yaml"
 get_crds_from_latest_release "topicuskeyhub/keyhub-vault-operator" "crds.yaml"
 
