@@ -4,5 +4,6 @@
     ],
     semanticCommits: "enabled",
     enabledManagers: ["github-actions"],
-    includePaths: [".github/workflows/*.yml"]
+    includePaths: [".github/workflows/*.yml"],
+    ignoreTests: true
 }
