@@ -19,7 +19,7 @@ jobs:
         run: "rm -rf standalone/*"
 
       - name: Generate
-        run: make gen
+        run: make gen && date > standalone/last_sync.txt
         env:
           GITHUB_TOKEN: ${{ secrets.INFRABOT_TOKEN }}
 
