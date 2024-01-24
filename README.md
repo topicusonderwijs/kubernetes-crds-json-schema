@@ -5,8 +5,7 @@
 - Grafana Agent
 - keyhub-vault-operator
 - Kyverno (ClusterPolicy/Policy)
-- Operator Lifecycle Manager (OLM)
-- traefik
+- Traefik
 
 ## Usage with Kubeconform
 ```
