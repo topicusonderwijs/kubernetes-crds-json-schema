@@ -24,13 +24,13 @@ get_crds_from_latest_release "topicuskeyhub/keyhub-vault-operator" "crds.yaml"
 
 # Add CRDs from GitHub tag
 schemas+=( "https://raw.githubusercontent.com/traefik/traefik/$(get_latest_release "traefik/traefik")/integration/fixtures/k8s/01-traefik-crd.yml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_podmonitors.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_probes.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.coreos.com_servicemonitors.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_grafanaagents.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_logsinstances.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_metricsinstances.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/production/operator/crds/monitoring.grafana.com_podlogs.yaml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.coreos.com_podmonitors.yaml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.coreos.com_probes.yaml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.coreos.com_servicemonitors.yaml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.grafana.com_grafanaagents.yaml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.grafana.com_logsinstances.yaml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.grafana.com_metricsinstances.yaml" )
+schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.grafana.com_podlogs.yaml" )
 
 
 $OPENAPI2JSONSCHEMABIN ${schemas[@]}
