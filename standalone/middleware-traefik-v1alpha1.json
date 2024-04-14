@@ -597,7 +597,7 @@
           "additionalProperties": false
         },
         "ipAllowList": {
-          "description": "IPAllowList holds the IP allowlist middleware configuration.\nThis middleware accepts / refuses requests based on the client IP.\nMore info: https://doc.traefik.io/traefik/v2.11/middlewares/http/ipallowlist/",
+          "description": "IPAllowList holds the IP allowlist middleware configuration.\nThis middleware limits allowed requests based on the client IP.\nMore info: https://doc.traefik.io/traefik/v2.11/middlewares/http/ipallowlist/",
           "properties": {
             "ipStrategy": {
               "description": "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP.\nMore info: https://doc.traefik.io/traefik/v2.11/middlewares/http/ipallowlist/#ipstrategy",
@@ -629,7 +629,7 @@
           "additionalProperties": false
         },
         "ipWhiteList": {
-          "description": "IPWhiteList holds the IP whitelist middleware configuration.\nThis middleware accepts / refuses requests based on the client IP.\nMore info: https://doc.traefik.io/traefik/v2.11/middlewares/http/ipwhitelist/\nDeprecated: please use IPAllowList instead.",
+          "description": "IPWhiteList holds the IP whitelist middleware configuration.\nThis middleware limits allowed requests based on the client IP.\nMore info: https://doc.traefik.io/traefik/v2.11/middlewares/http/ipwhitelist/\nDeprecated: please use IPAllowList instead.",
           "properties": {
             "ipStrategy": {
               "description": "IPStrategy holds the IP strategy configuration used by Traefik to determine the client IP.\nMore info: https://doc.traefik.io/traefik/v2.11/middlewares/http/ipallowlist/#ipstrategy",
@@ -650,7 +650,7 @@
               "additionalProperties": false
             },
             "sourceRange": {
-              "description": "SourceRange defines the set of allowed IPs (or ranges of allowed IPs by using CIDR notation).",
+              "description": "SourceRange defines the set of allowed IPs (or ranges of allowed IPs by using CIDR notation). Required.",
               "items": {
                 "type": "string"
               },
