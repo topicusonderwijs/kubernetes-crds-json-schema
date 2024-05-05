@@ -16,7 +16,7 @@
       "description": "IngressRouteSpec defines the desired state of IngressRoute.",
       "properties": {
         "entryPoints": {
-          "description": "EntryPoints defines the list of entry point names to bind to.\nEntry points have to be configured in the static configuration.\nMore info: https://doc.traefik.io/traefik/v2.11/routing/entrypoints/\nDefault: all.",
+          "description": "EntryPoints defines the list of entry point names to bind to.\nEntry points have to be configured in the static configuration.\nMore info: https://doc.traefik.io/traefik/v3.0/routing/entrypoints/\nDefault: all.",
           "items": {
             "type": "string"
           },
@@ -35,11 +35,11 @@
                 "type": "string"
               },
               "match": {
-                "description": "Match defines the router's rule.\nMore info: https://doc.traefik.io/traefik/v2.11/routing/routers/#rule",
+                "description": "Match defines the router's rule.\nMore info: https://doc.traefik.io/traefik/v3.0/routing/routers/#rule",
                 "type": "string"
               },
               "middlewares": {
-                "description": "Middlewares defines the list of references to Middleware resources.\nMore info: https://doc.traefik.io/traefik/v2.11/routing/providers/kubernetes-crd/#kind-middleware",
+                "description": "Middlewares defines the list of references to Middleware resources.\nMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-middleware",
                 "items": {
                   "description": "MiddlewareRef is a reference to a Middleware resource.",
                   "properties": {
@@ -61,7 +61,7 @@
                 "type": "array"
               },
               "priority": {
-                "description": "Priority defines the router's priority.\nMore info: https://doc.traefik.io/traefik/v2.11/routing/routers/#priority",
+                "description": "Priority defines the router's priority.\nMore info: https://doc.traefik.io/traefik/v3.0/routing/routers/#priority",
                 "type": "integer"
               },
               "services": {
@@ -125,7 +125,7 @@
                       "type": "string"
                     },
                     "sticky": {
-                      "description": "Sticky defines the sticky sessions configuration.\nMore info: https://doc.traefik.io/traefik/v2.11/routing/services/#sticky-sessions",
+                      "description": "Sticky defines the sticky sessions configuration.\nMore info: https://doc.traefik.io/traefik/v3.0/routing/services/#sticky-sessions",
                       "properties": {
                         "cookie": {
                           "description": "Cookie defines the sticky cookie configuration.",
@@ -133,6 +133,10 @@
                             "httpOnly": {
                               "description": "HTTPOnly defines whether the cookie can be accessed by client-side APIs, such as JavaScript.",
                               "type": "boolean"
+                            },
+                            "maxAge": {
+                              "description": "MaxAge indicates the number of seconds until the cookie expires.\nWhen set to a negative number, the cookie expires immediately.\nWhen set to zero, the cookie never expires.",
+                              "type": "integer"
                             },
                             "name": {
                               "description": "Name defines the Cookie name.",
@@ -170,6 +174,10 @@
                   "additionalProperties": false
                 },
                 "type": "array"
+              },
+              "syntax": {
+                "description": "Syntax defines the router's rule syntax.\nMore info: https://doc.traefik.io/traefik/v3.0/routing/routers/#rulesyntax",
+                "type": "string"
               }
             },
             "required": [
@@ -182,14 +190,14 @@
           "type": "array"
         },
         "tls": {
-          "description": "TLS defines the TLS configuration.\nMore info: https://doc.traefik.io/traefik/v2.11/routing/routers/#tls",
+          "description": "TLS defines the TLS configuration.\nMore info: https://doc.traefik.io/traefik/v3.0/routing/routers/#tls",
           "properties": {
             "certResolver": {
-              "description": "CertResolver defines the name of the certificate resolver to use.\nCert resolvers have to be configured in the static configuration.\nMore info: https://doc.traefik.io/traefik/v2.11/https/acme/#certificate-resolvers",
+              "description": "CertResolver defines the name of the certificate resolver to use.\nCert resolvers have to be configured in the static configuration.\nMore info: https://doc.traefik.io/traefik/v3.0/https/acme/#certificate-resolvers",
               "type": "string"
             },
             "domains": {
-              "description": "Domains defines the list of domains that will be used to issue certificates.\nMore info: https://doc.traefik.io/traefik/v2.11/routing/routers/#domains",
+              "description": "Domains defines the list of domains that will be used to issue certificates.\nMore info: https://doc.traefik.io/traefik/v3.0/routing/routers/#domains",
               "items": {
                 "description": "Domain holds a domain name with SANs.",
                 "properties": {
@@ -211,14 +219,14 @@
               "type": "array"
             },
             "options": {
-              "description": "Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection.\nIf not defined, the `default` TLSOption is used.\nMore info: https://doc.traefik.io/traefik/v2.11/https/tls/#tls-options",
+              "description": "Options defines the reference to a TLSOption, that specifies the parameters of the TLS connection.\nIf not defined, the `default` TLSOption is used.\nMore info: https://doc.traefik.io/traefik/v3.0/https/tls/#tls-options",
               "properties": {
                 "name": {
-                  "description": "Name defines the name of the referenced TLSOption.\nMore info: https://doc.traefik.io/traefik/v2.11/routing/providers/kubernetes-crd/#kind-tlsoption",
+                  "description": "Name defines the name of the referenced TLSOption.\nMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-tlsoption",
                   "type": "string"
                 },
                 "namespace": {
-                  "description": "Namespace defines the namespace of the referenced TLSOption.\nMore info: https://doc.traefik.io/traefik/v2.11/routing/providers/kubernetes-crd/#kind-tlsoption",
+                  "description": "Namespace defines the namespace of the referenced TLSOption.\nMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-tlsoption",
                   "type": "string"
                 }
               },
@@ -236,11 +244,11 @@
               "description": "Store defines the reference to the TLSStore, that will be used to store certificates.\nPlease note that only `default` TLSStore can be used.",
               "properties": {
                 "name": {
-                  "description": "Name defines the name of the referenced TLSStore.\nMore info: https://doc.traefik.io/traefik/v2.11/routing/providers/kubernetes-crd/#kind-tlsstore",
+                  "description": "Name defines the name of the referenced TLSStore.\nMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-tlsstore",
                   "type": "string"
                 },
                 "namespace": {
-                  "description": "Namespace defines the namespace of the referenced TLSStore.\nMore info: https://doc.traefik.io/traefik/v2.11/routing/providers/kubernetes-crd/#kind-tlsstore",
+                  "description": "Namespace defines the namespace of the referenced TLSStore.\nMore info: https://doc.traefik.io/traefik/v3.0/routing/providers/kubernetes-crd/#kind-tlsstore",
                   "type": "string"
                 }
               },
