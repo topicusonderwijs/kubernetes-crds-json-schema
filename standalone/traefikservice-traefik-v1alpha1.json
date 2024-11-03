@@ -1,5 +1,5 @@
 {
-  "description": "TraefikService is the CRD implementation of a Traefik Service.\nTraefikService object allows to:\n- Apply weight to Services on load-balancing\n- Mirror traffic on services\nMore info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#kind-traefikservice",
+  "description": "TraefikService is the CRD implementation of a Traefik Service.\nTraefikService object allows to:\n- Apply weight to Services on load-balancing\n- Mirror traffic on services\nMore info: https://doc.traefik.io/traefik/v3.2/routing/providers/kubernetes-crd/#kind-traefikservice",
   "properties": {
     "apiVersion": {
       "description": "APIVersion defines the versioned schema of this representation of an object.\nServers should convert recognized schemas to the latest internal value, and\nmay reject unrecognized values.\nMore info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
@@ -100,6 +100,10 @@
               "description": "MaxBodySize defines the maximum size allowed for the body of the request.\nIf the body is larger, the request is not mirrored.\nDefault value is -1, which means unlimited size.",
               "format": "int64",
               "type": "integer"
+            },
+            "mirrorBody": {
+              "description": "MirrorBody defines whether the body of the request should be mirrored.\nDefault value is true.",
+              "type": "boolean"
             },
             "mirrors": {
               "description": "Mirrors defines the list of mirrors where Traefik will duplicate the traffic.",
@@ -240,7 +244,7 @@
                     "type": "string"
                   },
                   "sticky": {
-                    "description": "Sticky defines the sticky sessions configuration.\nMore info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
+                    "description": "Sticky defines the sticky sessions configuration.\nMore info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
                     "properties": {
                       "cookie": {
                         "description": "Cookie defines the sticky cookie configuration.",
@@ -342,7 +346,7 @@
               "type": "string"
             },
             "sticky": {
-              "description": "Sticky defines the sticky sessions configuration.\nMore info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
+              "description": "Sticky defines the sticky sessions configuration.\nMore info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
               "properties": {
                 "cookie": {
                   "description": "Cookie defines the sticky cookie configuration.",
@@ -528,7 +532,7 @@
                     "type": "string"
                   },
                   "sticky": {
-                    "description": "Sticky defines the sticky sessions configuration.\nMore info: https://doc.traefik.io/traefik/v3.1/routing/services/#sticky-sessions",
+                    "description": "Sticky defines the sticky sessions configuration.\nMore info: https://doc.traefik.io/traefik/v3.2/routing/services/#sticky-sessions",
                     "properties": {
                       "cookie": {
                         "description": "Cookie defines the sticky cookie configuration.",
@@ -579,7 +583,7 @@
               "type": "array"
             },
             "sticky": {
-              "description": "Sticky defines whether sticky sessions are enabled.\nMore info: https://doc.traefik.io/traefik/v3.1/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
+              "description": "Sticky defines whether sticky sessions are enabled.\nMore info: https://doc.traefik.io/traefik/v3.2/routing/providers/kubernetes-crd/#stickiness-and-load-balancing",
               "properties": {
                 "cookie": {
                   "description": "Cookie defines the sticky cookie configuration.",
