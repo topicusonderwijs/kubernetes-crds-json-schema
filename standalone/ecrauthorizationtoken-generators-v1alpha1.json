@@ -157,6 +157,10 @@
         "role": {
           "description": "You can assume a role before making calls to the\ndesired AWS service.",
           "type": "string"
+        },
+        "scope": {
+          "description": "Scope specifies the ECR service scope.\nValid options are private and public.",
+          "type": "string"
         }
       },
       "required": [
