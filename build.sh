@@ -33,6 +33,8 @@ get_crds_from_latest_release "topicusonderwijs/nats-jetstream-operator" "crds.ya
 # Add CRDs from GitHub tag
 schemas+=( "https://raw.githubusercontent.com/traefik/traefik/$(get_latest_release "traefik/traefik")/integration/fixtures/k8s/01-traefik-crd.yml" )
 schemas+=( "https://raw.githubusercontent.com/prometheus-community/helm-charts/$(get_latest_release "prometheus-community/helm-charts" "kube-prometheus-stack")/charts/kube-prometheus-stack/charts/crds/crds/crd-podmonitors.yaml" )
+schemas+=( "https://raw.githubusercontent.com/prometheus-community/helm-charts/$(get_latest_release "prometheus-community/helm-charts" "kube-prometheus-stack")/charts/kube-prometheus-stack/charts/crds/crds/crd-probes.yaml" )
+schemas+=( "https://raw.githubusercontent.com/prometheus-community/helm-charts/$(get_latest_release "prometheus-community/helm-charts" "kube-prometheus-stack")/charts/kube-prometheus-stack/charts/crds/crds/crd-servicemonitors.yaml" )
 schemas+=( "https://raw.githubusercontent.com/grafana/alloy/$(get_latest_release "grafana/alloy")/operations/helm/charts/alloy/charts/crds/crds/monitoring.grafana.com_podlogs.yaml" )
 
 $OPENAPI2JSONSCHEMABIN ${schemas[@]}
