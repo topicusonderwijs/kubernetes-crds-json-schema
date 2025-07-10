@@ -23,7 +23,7 @@ get_crds_from_latest_release "external-secrets/external-secrets" "external-secre
 get_crds_from_latest_release "jetstack/cert-manager" "cert-manager.crds.yaml"
 get_crds_from_latest_release "kyverno/kyverno" "kyverno.io_clusterpolicies.yaml"
 get_crds_from_latest_release "kyverno/kyverno" "kyverno.io_policies.yaml"
-get_crds_from_latest_release "prometheus-operator/prometheus-operator" "stripped-down-crds.yaml"
+get_crds_from_latest_release "prometheus-operator/prometheus-operator" "bundle.yaml"
 get_crds_from_latest_release "topicusonderwijs/nats-account-operator" "crds.yaml"
 get_crds_from_latest_release "topicusonderwijs/nats-jetstream-operator" "crds.yaml"
 
