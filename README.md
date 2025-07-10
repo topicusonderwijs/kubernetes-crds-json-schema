@@ -2,8 +2,9 @@
 
 ## Supported CRDs
 - cert-manager
-- Grafana Agent
+- Grafana Alloy
 - Kyverno (ClusterPolicy/Policy)
+- Prometheus Operator
 - Traefik
 
 ## Usage with Kubeconform
