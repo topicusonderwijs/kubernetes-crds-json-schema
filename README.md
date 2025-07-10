@@ -3,7 +3,6 @@
 ## Supported CRDs
 - cert-manager
 - Grafana Agent
-- keyhub-vault-operator
 - Kyverno (ClusterPolicy/Policy)
 - Traefik
 
