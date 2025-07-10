@@ -23,16 +23,12 @@ get_crds_from_latest_release "external-secrets/external-secrets" "external-secre
 get_crds_from_latest_release "jetstack/cert-manager" "cert-manager.crds.yaml"
 get_crds_from_latest_release "kyverno/kyverno" "kyverno.io_clusterpolicies.yaml"
 get_crds_from_latest_release "kyverno/kyverno" "kyverno.io_policies.yaml"
+get_crds_from_latest_release "prometheus-operator/prometheus-operator" "stripped-down-crds.yaml"
+get_crds_from_latest_release "topicusonderwijs/nats-account-operator" "crds.yaml"
+get_crds_from_latest_release "topicusonderwijs/nats-jetstream-operator" "crds.yaml"
 
 # Add CRDs from GitHub tag
 schemas+=( "https://raw.githubusercontent.com/traefik/traefik/$(get_latest_release "traefik/traefik")/integration/fixtures/k8s/01-traefik-crd.yml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.coreos.com_podmonitors.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.coreos.com_probes.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.coreos.com_servicemonitors.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.grafana.com_grafanaagents.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.grafana.com_logsinstances.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.grafana.com_metricsinstances.yaml" )
-schemas+=( "https://raw.githubusercontent.com/grafana/agent/$(get_latest_release "grafana/agent")/operations/agent-static-operator/crds/monitoring.grafana.com_podlogs.yaml" )
-
+schemas+=( "https://raw.githubusercontent.com/grafana/alloy/$(get_latest_release "grafana/alloy")/operations/helm/charts/alloy/charts/crds/crds/monitoring.grafana.com_podlogs.yaml" )
 
 $OPENAPI2JSONSCHEMABIN ${schemas[@]}
