@@ -15,7 +15,7 @@ get_latest_release() {
 
 function get_crds_from_latest_release() {
   # Fetch 'latest' release
-  tag=$(gh release list -R $1 --jq '.[]|select(.name|startswith("helm-chart")|not)' --json name,tagName | jq -rn '. |= [inputs] | first | .tagName')
+  tag=$(gh release list -R $1 --exclude-drafts --exclude-pre-releases --jq '.[]|select(.name|startswith("helm-chart")|not)' --json name,tagName | jq -rn '. |= [inputs] | first | .tagName')
   gh release download $tag -R $1 -p $2 -D "$tmp_dir/$1"
   schemas+=( "/crds/$1/$2" )
 }
