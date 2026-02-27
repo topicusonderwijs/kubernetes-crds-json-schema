@@ -1,10 +1,16 @@
 # JSON Schemas for Kubernetes Custom Resources
 
 ## Supported CRDs
+- Argo Events
+- Argo Workflows
 - cert-manager
+- CloudNativePG
+- External Secrets Operator
 - Grafana Alloy
+- Kafka Operator (by Strimzi)
 - Kyverno (ClusterPolicy/Policy)
-- Prometheus Operator
+- Prometheus Operator (PodMonitor/ServiceMonitor)
+- Redis Operator (by Opstree Solutions)
 - Traefik
 
 ## Usage with Kubeconform
