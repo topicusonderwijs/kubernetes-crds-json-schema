@@ -29,7 +29,7 @@
             },
             "deleteClaim": {
               "type": "boolean",
-              "description": "Specifies whether the persistent volume claim is deleted when a Kafka node is deleted. Optional. Defaults to `false`."
+              "description": "Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed."
             },
             "id": {
               "type": "integer",
@@ -59,7 +59,7 @@
                 },
                 "additionalProperties": false
               },
-              "description": "As of Strimzi 0.46.0, the storage overrides for individual brokers are not supported anymore and this option is ignored."
+              "description": "Overrides for individual brokers. The `overrides` field allows you to specify a different configuration for different brokers."
             },
             "selector": {
               "additionalProperties": {
@@ -86,10 +86,6 @@
               ],
               "description": "Storage type, must be either 'ephemeral', 'persistent-claim', or 'jbod'."
             },
-            "volumeAttributesClass": {
-              "type": "string",
-              "description": "Specifies `VolumeAttributeClass` name for dynamically configuring storage attributes."
-            },
             "volumes": {
               "type": "array",
               "items": {
@@ -101,7 +97,7 @@
                   },
                   "deleteClaim": {
                     "type": "boolean",
-                    "description": "Specifies whether the persistent volume claim is deleted when a Kafka node is deleted. Optional. Defaults to `false`."
+                    "description": "Specifies if the persistent volume claim has to be deleted when the cluster is un-deployed."
                   },
                   "id": {
                     "type": "integer",
@@ -131,7 +127,7 @@
                       },
                       "additionalProperties": false
                     },
-                    "description": "As of Strimzi 0.46.0, the storage overrides for individual brokers are not supported anymore and this option is ignored."
+                    "description": "Overrides for individual brokers. The `overrides` field allows you to specify a different configuration for different brokers."
                   },
                   "selector": {
                     "additionalProperties": {
@@ -156,10 +152,6 @@
                       "persistent-claim"
                     ],
                     "description": "Storage type, must be either 'ephemeral' or 'persistent-claim'."
-                  },
-                  "volumeAttributesClass": {
-                    "type": "string",
-                    "description": "Specifies `VolumeAttributeClass` name for dynamically configuring storage attributes."
                   }
                 },
                 "required": [
@@ -185,7 +177,7 @@
               "broker"
             ]
           },
-          "description": "The roles assigned to the node pool. Supported values are `broker` and `controller`. This property is required."
+          "description": "The roles that the nodes in this pool will have when KRaft mode is enabled. Supported values are 'broker' and 'controller'. This field is required. When KRaft mode is disabled, the only allowed value if `broker`."
         },
         "resources": {
           "type": "object",
@@ -1130,50 +1122,6 @@
                   },
                   "description": "The pod's HostAliases. HostAliases is an optional list of hosts and IPs that will be injected into the Pod's hosts file if specified."
                 },
-                "dnsPolicy": {
-                  "type": "string",
-                  "enum": [
-                    "ClusterFirst",
-                    "ClusterFirstWithHostNet",
-                    "Default",
-                    "None"
-                  ],
-                  "description": "The pod's DNSPolicy. Defaults to `ClusterFirst`. Valid values are `ClusterFirstWithHostNet`, `ClusterFirst`, `Default` or `None`."
-                },
-                "dnsConfig": {
-                  "type": "object",
-                  "properties": {
-                    "nameservers": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "options": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "name": {
-                            "type": "string"
-                          },
-                          "value": {
-                            "type": "string"
-                          }
-                        },
-                        "additionalProperties": false
-                      }
-                    },
-                    "searches": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "description": "The pod's DNSConfig. If specified, it will be merged to the generated DNS configuration based on the DNSPolicy.",
-                  "additionalProperties": false
-                },
                 "enableServiceLinks": {
                   "type": "boolean",
                   "description": "Indicates whether information about services should be injected into Pod's environment variables."
@@ -1223,7 +1171,7 @@
                             "type": "string"
                           }
                         },
-                        "description": "`Secret` to use to populate the volume.",
+                        "description": "Secret to use populate the volume.",
                         "additionalProperties": false
                       },
                       "configMap": {
@@ -1257,26 +1205,29 @@
                             "type": "boolean"
                           }
                         },
-                        "description": "`ConfigMap` to use to populate the volume.",
+                        "description": "ConfigMap to use to populate the volume.",
                         "additionalProperties": false
                       },
                       "emptyDir": {
                         "type": "object",
                         "properties": {
                           "medium": {
-                            "type": "string",
-                            "enum": [
-                              "Memory"
-                            ],
-                            "description": "Medium represents the type of storage medium should back this volume. Valid values are unset or `Memory`. When not set, it will use the node's default medium."
+                            "type": "string"
                           },
                           "sizeLimit": {
-                            "type": "string",
-                            "pattern": "^([0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$",
-                            "description": "The total amount of local storage required for this EmptyDir volume (for example 1Gi)."
+                            "type": "object",
+                            "properties": {
+                              "amount": {
+                                "type": "string"
+                              },
+                              "format": {
+                                "type": "string"
+                              }
+                            },
+                            "additionalProperties": false
                           }
                         },
-                        "description": "`EmptyDir` to use to populate the volume.",
+                        "description": "EmptyDir to use to populate the volume.",
                         "additionalProperties": false
                       },
                       "persistentVolumeClaim": {
@@ -1289,7 +1240,7 @@
                             "type": "boolean"
                           }
                         },
-                        "description": "`PersistentVolumeClaim` object to use to populate the volume.",
+                        "description": "PersistentVolumeClaim object to use to populate the volume.",
                         "additionalProperties": false
                       },
                       "csi": {
@@ -1320,20 +1271,7 @@
                             "type": "object"
                           }
                         },
-                        "description": "`CSIVolumeSource` object to use to populate the volume.",
-                        "additionalProperties": false
-                      },
-                      "image": {
-                        "type": "object",
-                        "properties": {
-                          "pullPolicy": {
-                            "type": "string"
-                          },
-                          "reference": {
-                            "type": "string"
-                          }
-                        },
-                        "description": "`ImageVolumeSource` object to use to populate the volume.",
+                        "description": "CSIVolumeSource object to use to populate the volume.",
                         "additionalProperties": false
                       }
                     },
@@ -1344,18 +1282,13 @@
                           "configMap": {},
                           "emptyDir": {},
                           "persistentVolumeClaim": {},
-                          "csi": {},
-                          "image": {}
+                          "csi": {}
                         }
                       }
                     ],
                     "additionalProperties": false
                   },
                   "description": "Additional volumes that can be mounted to the pod."
-                },
-                "hostUsers": {
-                  "type": "boolean",
-                  "description": "Use the host user namespace. Optional. Defaults to `true`. When `true` or not set, the pod runs in the host user namespace. This is required when the pod needs features available only in the host namespace, such as loading kernel modules with `CAP_SYS_MODULE`.When set to `false`, the pod runs in a new user namespace. Setting `false` helps mitigate container breakout vulnerabilities and allows containers to run as `root` without granting `root` privileges on the host. This property is alpha-level in Kubernetes and is supported only by Kubernetes clusters that enable the `UserNamespacesSupport` feature."
                 }
               },
               "description": "Template for Kafka `Pods`.",

@@ -39,14 +39,10 @@
           "description": "Automatic restart of connector and tasks configuration.",
           "additionalProperties": false
         },
-        "version": {
-          "type": "string",
-          "description": "Desired version or version range to respect when starting the Kafka Connector. This is only supported when using Kafka Connect version 4.1.0 and higher."
-        },
         "config": {
           "x-kubernetes-preserve-unknown-fields": true,
           "type": "object",
-          "description": "The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max, connector.plugin.version."
+          "description": "The Kafka Connector configuration. The following properties cannot be set: name, connector.class, tasks.max."
         },
         "pause": {
           "type": "boolean",
