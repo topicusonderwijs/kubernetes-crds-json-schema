@@ -4,6 +4,9 @@
     ],
     semanticCommits: "enabled",
     enabledManagers: ["github-actions", "dockerfile"],
-    includePaths: [".github/workflows/*.yml"],
+    includePaths: [
+        ".github/workflows/*.yml",
+        "Dockerfile",
+    ],
     ignoreTests: true
 }
