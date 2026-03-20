@@ -3,7 +3,7 @@
       "local>topicusonderwijs/renovate-config:default.json5"
     ],
     semanticCommits: "enabled",
-    enabledManagers: ["github-actions"],
+    enabledManagers: ["github-actions", "dockerfile"],
     includePaths: [".github/workflows/*.yml"],
     ignoreTests: true
 }
