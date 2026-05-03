@@ -118,5 +118,8 @@
       "description": "The status of the StrimziPodSet.",
       "additionalProperties": false
     }
-  }
+  },
+  "required": [
+    "spec"
+  ]
 }
