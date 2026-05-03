@@ -115,5 +115,8 @@
       "description": "The status of the topic.",
       "additionalProperties": false
     }
-  }
+  },
+  "required": [
+    "spec"
+  ]
 }
