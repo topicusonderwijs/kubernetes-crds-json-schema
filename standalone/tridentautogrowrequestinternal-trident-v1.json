@@ -1,0 +1,98 @@
+{
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "object",
+      "required": [
+        "volume",
+        "autogrowPolicyRef",
+        "observedCapacityBytes",
+        "observedUsedPercent",
+        "observedUsedBytes",
+        "nodeName"
+      ],
+      "properties": {
+        "volume": {
+          "type": "string",
+          "description": "Name of the PersistentVolume to be expanded"
+        },
+        "observedUsedPercent": {
+          "type": "number",
+          "format": "float",
+          "description": "Current used size of the volume in percentage"
+        },
+        "observedUsedBytes": {
+          "type": "string",
+          "description": "Current used size of the volume in bytes"
+        },
+        "observedCapacityBytes": {
+          "type": "string",
+          "description": "Current capacity of the volume in bytes"
+        },
+        "nodeName": {
+          "type": "string",
+          "description": "Name of the node that created this request"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the threshold was breached (optional, for observability)"
+        },
+        "autogrowPolicyRef": {
+          "type": "object",
+          "required": [
+            "name",
+            "generation"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the TridentAutogrowPolicy being applied"
+            },
+            "generation": {
+              "type": "integer",
+              "format": "int64",
+              "description": "Generation number of the TridentAutogrowPolicy when request was created"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "phase": {
+          "type": "string",
+          "enum": [
+            "Pending",
+            "InProgress",
+            "Completed",
+            "Rejected",
+            "Failed"
+          ],
+          "description": "Current phase of the request"
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable message describing the status"
+        },
+        "finalCapacityBytes": {
+          "type": "string",
+          "description": "Final capacity after resize (if approved)"
+        },
+        "processedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Time when TAGRI moved to terminal phase (Completed/Failed/Rejected)"
+        },
+        "retryCount": {
+          "type": "integer",
+          "description": "Number of retries attempted"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

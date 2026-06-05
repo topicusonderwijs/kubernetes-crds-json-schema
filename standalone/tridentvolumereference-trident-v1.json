@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "object",
+      "properties": {
+        "pvcName": {
+          "type": "string"
+        },
+        "pvcNamespace": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "pvcName",
+        "pvcNamespace"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

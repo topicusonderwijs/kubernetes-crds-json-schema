@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "volumeID": {
+      "type": "string"
+    },
+    "nodeID": {
+      "type": "string"
+    },
+    "readOnly": {
+      "type": "boolean"
+    },
+    "accessMode": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "autogrowPolicy": {
+      "type": "string",
+      "description": "Autogrow policy for the volume present on PVC annotation"
+    },
+    "storageClass": {
+      "type": "string",
+      "description": "Name of the StorageClass used by this volume"
+    },
+    "backendUUID": {
+      "type": "string",
+      "description": "UUID of the backend hosting this volume"
+    },
+    "pool": {
+      "type": "string",
+      "description": "Name of the storage pool hosting this volume"
+    },
+    "autogrowIneligible": {
+      "type": "boolean",
+      "description": "Indicates if volume is ineligible for autogrow monitoring"
+    }
+  },
+  "required": [
+    "volumeID",
+    "nodeID",
+    "readOnly"
+  ]
+}
