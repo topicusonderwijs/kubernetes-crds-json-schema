@@ -43,5 +43,13 @@ schemas+=( "https://raw.githubusercontent.com/prometheus-community/helm-charts/$
 schemas+=( "https://raw.githubusercontent.com/prometheus-community/helm-charts/$(get_latest_release "prometheus-community/helm-charts" "kube-prometheus-stack")/charts/kube-prometheus-stack/charts/crds/crds/crd-servicemonitors.yaml" )
 schemas+=( "https://raw.githubusercontent.com/OT-CONTAINER-KIT/redis-operator/$(get_latest_release "OT-CONTAINER-KIT/redis-operator")/charts/redis-operator/crds/crds.yaml" )
 schemas+=( "https://raw.githubusercontent.com/traefik/traefik/$(get_latest_release "traefik/traefik")/integration/fixtures/k8s/01-traefik-crd.yml" )
+trident_tag=$(get_latest_release "NetApp/trident")
+schemas+=( "https://raw.githubusercontent.com/NetApp/trident/$trident_tag/helm/trident-operator/crds/tridentorchestrators.yaml" )
+schemas+=( "https://raw.githubusercontent.com/NetApp/trident/$trident_tag/helm/trident-operator/crds/tridentconfigurators.yaml" )
+trident_resource_dir="$tmp_dir/NetApp/trident/resource-crds"
+(cd ./scripts && go run . "$trident_tag" "$trident_resource_dir")
+for f in "$trident_resource_dir/"*.yaml; do
+  schemas+=( "/crds/NetApp/trident/resource-crds/$(basename "$f")" )
+done
 
 $OPENAPI2JSONSCHEMABIN ${schemas[@]}
