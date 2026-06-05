@@ -1,0 +1,94 @@
+{
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "",
+            "promoted",
+            "established",
+            "reestablished"
+          ]
+        },
+        "replicationPolicy": {
+          "type": "string"
+        },
+        "replicationSchedule": {
+          "type": "string"
+        },
+        "volumeMappings": {
+          "items": {
+            "type": "object",
+            "properties": {
+              "promotedSnapshotHandle": {
+                "type": "string"
+              },
+              "localPVCName": {
+                "type": "string"
+              },
+              "remoteVolumeHandle": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "localPVCName"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "maxItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "volumeMappings"
+      ],
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "lastTransitionTime": {
+                "type": "string"
+              },
+              "localPVCName": {
+                "type": "string"
+              },
+              "localVolumeHandle": {
+                "type": "string"
+              },
+              "remoteVolumeHandle": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "observedGeneration": {
+                "type": "integer"
+              },
+              "state": {
+                "type": "string"
+              },
+              "replicationPolicy": {
+                "type": "string"
+              },
+              "replicationSchedule": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

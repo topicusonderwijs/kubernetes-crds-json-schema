@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "object",
+      "properties": {
+        "snapshotName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "snapshotName"
+      ],
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "lastTransitionTime": {
+          "type": "string"
+        },
+        "observedGeneration": {
+          "type": "integer"
+        },
+        "snapshotHandle": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

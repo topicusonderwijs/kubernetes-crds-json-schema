@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "object"
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "completionTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "volumeAttachments": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "object",
+      "properties": {
+        "usedThreshold": {
+          "type": "string",
+          "description": "Usage threshold at which the volume should be auto-grown. Must be a percentage between 1% and 99% (e.g., 80%).",
+          "pattern": "^([1-9]|[1-9][0-9])(\\.[0-9]+)?%$"
+        },
+        "growthAmount": {
+          "type": "string",
+          "description": "Amount by which the volume size should be increased. Can be percentage (10%) or absolute (5Gi).",
+          "default": "10%",
+          "pattern": "^([1-9][0-9]*(\\.[0-9]+)?%|[0-9]+(\\.[0-9]+)?(E|P|T|G|M|k|Ei|Pi|Ti|Gi|Mi|Ki))$"
+        },
+        "maxSize": {
+          "type": "string",
+          "description": "The maximum allowable volume size growth expressed as an absolute value. Set to 0 for unlimited growth.",
+          "default": "0",
+          "pattern": "^(0|[0-9]+(\\.[0-9]+)?(E|P|T|G|M|k|Ei|Pi|Ti|Gi|Mi|Ki))$"
+        }
+      },
+      "required": [
+        "usedThreshold"
+      ],
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string",
+          "description": "State represents the current state of the policy lifecycle.",
+          "enum": [
+            "Success",
+            "Failed",
+            "Deleting"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "description": "Message provides detailed information about the policy status."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "x-kubernetes-validations": [
+    {
+      "rule": "self.metadata.name != 'NONE'",
+      "message": "metadata.name cannot be 'NONE'"
+    }
+  ]
+}
