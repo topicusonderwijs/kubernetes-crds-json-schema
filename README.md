@@ -12,6 +12,7 @@
 - Prometheus Operator (PodMonitor/ServiceMonitor)
 - Redis Operator (by Opstree Solutions)
 - Traefik
+- Trident
 
 ## Usage with Kubeconform
 ```
