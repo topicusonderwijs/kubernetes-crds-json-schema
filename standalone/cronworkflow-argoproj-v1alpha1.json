@@ -32,7 +32,7 @@
         "schedules": {
           "description": "v3.6 and after: Schedules is a list of schedules to run the Workflow in Cron format",
           "items": {
-            "pattern": "^(@(yearly|annually|monthly|weekly|daily|midnight|hourly)|@every\\s+([0-9]+(ns|us|\u00b5s|ms|s|m|h))+|([0-9*,/?-]+\\s+){4}[0-9*,/?-]+)$",
+            "pattern": "^(@(yearly|annually|monthly|weekly|daily|midnight|hourly)|@every\\s+([0-9]+(ns|us|\u00b5s|ms|s|m|h))+|([A-Za-z0-9*,/?-]+\\s+){4}[A-Za-z0-9*,/?-]+)$",
             "type": "string"
           },
           "minItems": 1,
@@ -911,7 +911,7 @@
               "type": "boolean"
             },
             "arguments": {
-              "description": "Arguments contain the parameters and artifacts sent to the workflow entrypoint\nParameters are referencable globally using the 'workflow' variable prefix.\ne.g. {{workflow.parameters.myparam}}",
+              "description": "Arguments contain the parameters and artifacts sent to the workflow entrypoint\nParameters are referencable globally using the 'workflow' variable prefix.\ne.g. workflow.parameters.myparam",
               "properties": {
                 "artifacts": {
                   "description": "Artifacts is the list of artifacts to pass to the template or workflow",
@@ -1280,7 +1280,7 @@
                         "additionalProperties": false
                       },
                       "globalName": {
-                        "description": "GlobalName exports an output artifact to the global scope, making it available as\n'{{workflow.outputs.artifacts.XXXX}} and in workflow.status.outputs.artifacts",
+                        "description": "GlobalName exports an output artifact to the global scope, making it available as\nworkflow.outputs.artifacts.XXXX and in workflow.status.outputs.artifacts",
                         "type": "string"
                       },
                       "hdfs": {
@@ -2051,7 +2051,7 @@
                         "type": "array"
                       },
                       "globalName": {
-                        "description": "GlobalName exports an output parameter to the global scope, making it available as\n'{{workflow.outputs.parameters.XXXX}} and in workflow.status.outputs.parameters",
+                        "description": "GlobalName exports an output parameter to the global scope, making it available as\nworkflow.outputs.parameters.XXXX and in workflow.status.outputs.parameters",
                         "type": "string"
                       },
                       "name": {
@@ -2111,7 +2111,7 @@
                             "type": "string"
                           },
                           "parameter": {
-                            "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. '{{steps.mystep.outputs.myparam}}')",
+                            "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. steps.mystep.outputs.myparam)",
                             "type": "string"
                           },
                           "path": {
@@ -2641,7 +2641,7 @@
                               "additionalProperties": false
                             },
                             "globalName": {
-                              "description": "GlobalName exports an output artifact to the global scope, making it available as\n'{{workflow.outputs.artifacts.XXXX}} and in workflow.status.outputs.artifacts",
+                              "description": "GlobalName exports an output artifact to the global scope, making it available as\nworkflow.outputs.artifacts.XXXX and in workflow.status.outputs.artifacts",
                               "type": "string"
                             },
                             "hdfs": {
@@ -3412,7 +3412,7 @@
                               "type": "array"
                             },
                             "globalName": {
-                              "description": "GlobalName exports an output parameter to the global scope, making it available as\n'{{workflow.outputs.parameters.XXXX}} and in workflow.status.outputs.parameters",
+                              "description": "GlobalName exports an output parameter to the global scope, making it available as\nworkflow.outputs.parameters.XXXX and in workflow.status.outputs.parameters",
                               "type": "string"
                             },
                             "name": {
@@ -3472,7 +3472,7 @@
                                   "type": "string"
                                 },
                                 "parameter": {
-                                  "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. '{{steps.mystep.outputs.myparam}}')",
+                                  "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. steps.mystep.outputs.myparam)",
                                   "type": "string"
                                 },
                                 "path": {
@@ -23652,7 +23652,7 @@
                         "type": "string"
                       },
                       "imagePullPolicy": {
-                        "description": "Image pull policy.\nOne of Always, Never, IfNotPresent.\nDefaults to Always if :v4.0.5 tag is specified, or IfNotPresent otherwise.\nCannot be updated.\nMore info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+                        "description": "Image pull policy.\nOne of Always, Never, IfNotPresent.\nDefaults to Always if :v4.0.6 tag is specified, or IfNotPresent otherwise.\nCannot be updated.\nMore info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
                         "type": "string"
                       },
                       "lifecycle": {
@@ -24976,7 +24976,7 @@
                               "type": "string"
                             },
                             "imagePullPolicy": {
-                              "description": "Image pull policy.\nOne of Always, Never, IfNotPresent.\nDefaults to Always if :v4.0.5 tag is specified, or IfNotPresent otherwise.\nCannot be updated.\nMore info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+                              "description": "Image pull policy.\nOne of Always, Never, IfNotPresent.\nDefaults to Always if :v4.0.6 tag is specified, or IfNotPresent otherwise.\nCannot be updated.\nMore info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
                               "type": "string"
                             },
                             "lifecycle": {
@@ -26555,7 +26555,7 @@
                                         "additionalProperties": false
                                       },
                                       "globalName": {
-                                        "description": "GlobalName exports an output artifact to the global scope, making it available as\n'{{workflow.outputs.artifacts.XXXX}} and in workflow.status.outputs.artifacts",
+                                        "description": "GlobalName exports an output artifact to the global scope, making it available as\nworkflow.outputs.artifacts.XXXX and in workflow.status.outputs.artifacts",
                                         "type": "string"
                                       },
                                       "hdfs": {
@@ -27326,7 +27326,7 @@
                                         "type": "array"
                                       },
                                       "globalName": {
-                                        "description": "GlobalName exports an output parameter to the global scope, making it available as\n'{{workflow.outputs.parameters.XXXX}} and in workflow.status.outputs.parameters",
+                                        "description": "GlobalName exports an output parameter to the global scope, making it available as\nworkflow.outputs.parameters.XXXX and in workflow.status.outputs.parameters",
                                         "type": "string"
                                       },
                                       "name": {
@@ -27386,7 +27386,7 @@
                                             "type": "string"
                                           },
                                           "parameter": {
-                                            "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. '{{steps.mystep.outputs.myparam}}')",
+                                            "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. steps.mystep.outputs.myparam)",
                                             "type": "string"
                                           },
                                           "path": {
@@ -27811,7 +27811,7 @@
                                               "additionalProperties": false
                                             },
                                             "globalName": {
-                                              "description": "GlobalName exports an output artifact to the global scope, making it available as\n'{{workflow.outputs.artifacts.XXXX}} and in workflow.status.outputs.artifacts",
+                                              "description": "GlobalName exports an output artifact to the global scope, making it available as\nworkflow.outputs.artifacts.XXXX and in workflow.status.outputs.artifacts",
                                               "type": "string"
                                             },
                                             "hdfs": {
@@ -28582,7 +28582,7 @@
                                               "type": "array"
                                             },
                                             "globalName": {
-                                              "description": "GlobalName exports an output parameter to the global scope, making it available as\n'{{workflow.outputs.parameters.XXXX}} and in workflow.status.outputs.parameters",
+                                              "description": "GlobalName exports an output parameter to the global scope, making it available as\nworkflow.outputs.parameters.XXXX and in workflow.status.outputs.parameters",
                                               "type": "string"
                                             },
                                             "name": {
@@ -28642,7 +28642,7 @@
                                                   "type": "string"
                                                 },
                                                 "parameter": {
-                                                  "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. '{{steps.mystep.outputs.myparam}}')",
+                                                  "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. steps.mystep.outputs.myparam)",
                                                   "type": "string"
                                                 },
                                                 "path": {
@@ -29209,7 +29209,7 @@
                                 "additionalProperties": false
                               },
                               "globalName": {
-                                "description": "GlobalName exports an output artifact to the global scope, making it available as\n'{{workflow.outputs.artifacts.XXXX}} and in workflow.status.outputs.artifacts",
+                                "description": "GlobalName exports an output artifact to the global scope, making it available as\nworkflow.outputs.artifacts.XXXX and in workflow.status.outputs.artifacts",
                                 "type": "string"
                               },
                               "hdfs": {
@@ -30328,7 +30328,7 @@
                           "type": "string"
                         },
                         "imagePullPolicy": {
-                          "description": "Image pull policy.\nOne of Always, Never, IfNotPresent.\nDefaults to Always if :v4.0.5 tag is specified, or IfNotPresent otherwise.\nCannot be updated.\nMore info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+                          "description": "Image pull policy.\nOne of Always, Never, IfNotPresent.\nDefaults to Always if :v4.0.6 tag is specified, or IfNotPresent otherwise.\nCannot be updated.\nMore info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
                           "type": "string"
                         },
                         "lifecycle": {
@@ -31816,7 +31816,7 @@
                               "additionalProperties": false
                             },
                             "globalName": {
-                              "description": "GlobalName exports an output artifact to the global scope, making it available as\n'{{workflow.outputs.artifacts.XXXX}} and in workflow.status.outputs.artifacts",
+                              "description": "GlobalName exports an output artifact to the global scope, making it available as\nworkflow.outputs.artifacts.XXXX and in workflow.status.outputs.artifacts",
                               "type": "string"
                             },
                             "hdfs": {
@@ -32587,7 +32587,7 @@
                               "type": "array"
                             },
                             "globalName": {
-                              "description": "GlobalName exports an output parameter to the global scope, making it available as\n'{{workflow.outputs.parameters.XXXX}} and in workflow.status.outputs.parameters",
+                              "description": "GlobalName exports an output parameter to the global scope, making it available as\nworkflow.outputs.parameters.XXXX and in workflow.status.outputs.parameters",
                               "type": "string"
                             },
                             "name": {
@@ -32647,7 +32647,7 @@
                                   "type": "string"
                                 },
                                 "parameter": {
-                                  "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. '{{steps.mystep.outputs.myparam}}')",
+                                  "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. steps.mystep.outputs.myparam)",
                                   "type": "string"
                                 },
                                 "path": {
@@ -33257,7 +33257,7 @@
                               "additionalProperties": false
                             },
                             "globalName": {
-                              "description": "GlobalName exports an output artifact to the global scope, making it available as\n'{{workflow.outputs.artifacts.XXXX}} and in workflow.status.outputs.artifacts",
+                              "description": "GlobalName exports an output artifact to the global scope, making it available as\nworkflow.outputs.artifacts.XXXX and in workflow.status.outputs.artifacts",
                               "type": "string"
                             },
                             "hdfs": {
@@ -34032,7 +34032,7 @@
                               "type": "array"
                             },
                             "globalName": {
-                              "description": "GlobalName exports an output parameter to the global scope, making it available as\n'{{workflow.outputs.parameters.XXXX}} and in workflow.status.outputs.parameters",
+                              "description": "GlobalName exports an output parameter to the global scope, making it available as\nworkflow.outputs.parameters.XXXX and in workflow.status.outputs.parameters",
                               "type": "string"
                             },
                             "name": {
@@ -34092,7 +34092,7 @@
                                   "type": "string"
                                 },
                                 "parameter": {
-                                  "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. '{{steps.mystep.outputs.myparam}}')",
+                                  "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. steps.mystep.outputs.myparam)",
                                   "type": "string"
                                 },
                                 "path": {
@@ -34541,7 +34541,7 @@
                                 "additionalProperties": false
                               },
                               "globalName": {
-                                "description": "GlobalName exports an output artifact to the global scope, making it available as\n'{{workflow.outputs.artifacts.XXXX}} and in workflow.status.outputs.artifacts",
+                                "description": "GlobalName exports an output artifact to the global scope, making it available as\nworkflow.outputs.artifacts.XXXX and in workflow.status.outputs.artifacts",
                                 "type": "string"
                               },
                               "hdfs": {
@@ -35609,7 +35609,7 @@
                         "type": "string"
                       },
                       "imagePullPolicy": {
-                        "description": "Image pull policy.\nOne of Always, Never, IfNotPresent.\nDefaults to Always if :v4.0.5 tag is specified, or IfNotPresent otherwise.\nCannot be updated.\nMore info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+                        "description": "Image pull policy.\nOne of Always, Never, IfNotPresent.\nDefaults to Always if :v4.0.6 tag is specified, or IfNotPresent otherwise.\nCannot be updated.\nMore info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
                         "type": "string"
                       },
                       "lifecycle": {
@@ -37087,7 +37087,7 @@
                           "type": "string"
                         },
                         "imagePullPolicy": {
-                          "description": "Image pull policy.\nOne of Always, Never, IfNotPresent.\nDefaults to Always if :v4.0.5 tag is specified, or IfNotPresent otherwise.\nCannot be updated.\nMore info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+                          "description": "Image pull policy.\nOne of Always, Never, IfNotPresent.\nDefaults to Always if :v4.0.6 tag is specified, or IfNotPresent otherwise.\nCannot be updated.\nMore info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
                           "type": "string"
                         },
                         "lifecycle": {
@@ -38582,7 +38582,7 @@
                                       "additionalProperties": false
                                     },
                                     "globalName": {
-                                      "description": "GlobalName exports an output artifact to the global scope, making it available as\n'{{workflow.outputs.artifacts.XXXX}} and in workflow.status.outputs.artifacts",
+                                      "description": "GlobalName exports an output artifact to the global scope, making it available as\nworkflow.outputs.artifacts.XXXX and in workflow.status.outputs.artifacts",
                                       "type": "string"
                                     },
                                     "hdfs": {
@@ -39353,7 +39353,7 @@
                                       "type": "array"
                                     },
                                     "globalName": {
-                                      "description": "GlobalName exports an output parameter to the global scope, making it available as\n'{{workflow.outputs.parameters.XXXX}} and in workflow.status.outputs.parameters",
+                                      "description": "GlobalName exports an output parameter to the global scope, making it available as\nworkflow.outputs.parameters.XXXX and in workflow.status.outputs.parameters",
                                       "type": "string"
                                     },
                                     "name": {
@@ -39413,7 +39413,7 @@
                                           "type": "string"
                                         },
                                         "parameter": {
-                                          "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. '{{steps.mystep.outputs.myparam}}')",
+                                          "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. steps.mystep.outputs.myparam)",
                                           "type": "string"
                                         },
                                         "path": {
@@ -39827,7 +39827,7 @@
                                             "additionalProperties": false
                                           },
                                           "globalName": {
-                                            "description": "GlobalName exports an output artifact to the global scope, making it available as\n'{{workflow.outputs.artifacts.XXXX}} and in workflow.status.outputs.artifacts",
+                                            "description": "GlobalName exports an output artifact to the global scope, making it available as\nworkflow.outputs.artifacts.XXXX and in workflow.status.outputs.artifacts",
                                             "type": "string"
                                           },
                                           "hdfs": {
@@ -40598,7 +40598,7 @@
                                             "type": "array"
                                           },
                                           "globalName": {
-                                            "description": "GlobalName exports an output parameter to the global scope, making it available as\n'{{workflow.outputs.parameters.XXXX}} and in workflow.status.outputs.parameters",
+                                            "description": "GlobalName exports an output parameter to the global scope, making it available as\nworkflow.outputs.parameters.XXXX and in workflow.status.outputs.parameters",
                                             "type": "string"
                                           },
                                           "name": {
@@ -40658,7 +40658,7 @@
                                                 "type": "string"
                                               },
                                               "parameter": {
-                                                "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. '{{steps.mystep.outputs.myparam}}')",
+                                                "description": "Parameter reference to a step or dag task in which to retrieve an output parameter value from\n(e.g. steps.mystep.outputs.myparam)",
                                                 "type": "string"
                                               },
                                               "path": {
@@ -41744,7 +41744,7 @@
                           "description": "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine.\nThe volume is resolved at pod startup depending on which PullPolicy value is provided:\n\n- Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.\n- Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.\n- IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.\n\nThe volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation.\nA failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message.\nThe types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field.\nThe OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images.\nThe volume will be mounted read-only (ro) and non-executable files (noexec).\nSub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33.\nThe field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
                           "properties": {
                             "pullPolicy": {
-                              "description": "Policy for pulling OCI objects. Possible values are:\nAlways: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.\nNever: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.\nIfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.\nDefaults to Always if :v4.0.5 tag is specified, or IfNotPresent otherwise.",
+                              "description": "Policy for pulling OCI objects. Possible values are:\nAlways: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.\nNever: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.\nIfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.\nDefaults to Always if :v4.0.6 tag is specified, or IfNotPresent otherwise.",
                               "type": "string"
                             },
                             "reference": {
@@ -43700,7 +43700,7 @@
                     "description": "image represents an OCI object (a container image or artifact) pulled and mounted on the kubelet's host machine.\nThe volume is resolved at pod startup depending on which PullPolicy value is provided:\n\n- Always: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.\n- Never: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.\n- IfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.\n\nThe volume gets re-resolved if the pod gets deleted and recreated, which means that new remote content will become available on pod recreation.\nA failure to resolve or pull the image during pod startup will block containers from starting and may add significant latency. Failures will be retried using normal volume backoff and will be reported on the pod reason and message.\nThe types of objects that may be mounted by this volume are defined by the container runtime implementation on a host machine and at minimum must include all valid types supported by the container image field.\nThe OCI object gets mounted in a single directory (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers in the same way as for container images.\nThe volume will be mounted read-only (ro) and non-executable files (noexec).\nSub path mounts for containers are not supported (spec.containers[*].volumeMounts.subpath) before 1.33.\nThe field spec.securityContext.fsGroupChangePolicy has no effect on this volume type.",
                     "properties": {
                       "pullPolicy": {
-                        "description": "Policy for pulling OCI objects. Possible values are:\nAlways: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.\nNever: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.\nIfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.\nDefaults to Always if :v4.0.5 tag is specified, or IfNotPresent otherwise.",
+                        "description": "Policy for pulling OCI objects. Possible values are:\nAlways: the kubelet always attempts to pull the reference. Container creation will fail If the pull fails.\nNever: the kubelet never pulls the reference and only uses a local image or artifact. Container creation will fail if the reference isn't present.\nIfNotPresent: the kubelet pulls if the reference isn't already present on disk. Container creation will fail if the reference isn't present and the pull fails.\nDefaults to Always if :v4.0.6 tag is specified, or IfNotPresent otherwise.",
                         "type": "string"
                       },
                       "reference": {
