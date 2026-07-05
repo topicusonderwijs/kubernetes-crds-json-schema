@@ -1,0 +1,103 @@
+{
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "object",
+      "required": [
+        "sourceNode",
+        "sourcePool",
+        "targetNode",
+        "targetPool"
+      ],
+      "properties": {
+        "sourceNode": {
+          "type": "string",
+          "description": "The source storage backend node."
+        },
+        "sourcePool": {
+          "type": "string",
+          "description": "The source storage backend pool."
+        },
+        "targetNode": {
+          "type": "string",
+          "description": "The target storage backend node."
+        },
+        "targetPool": {
+          "type": "string",
+          "description": "The target storage backend pool."
+        },
+        "deleteAfterSuccess": {
+          "type": "string",
+          "format": "duration",
+          "description": "When set, this CR will be automatically deleted after this interval after the move is  completed successfully (for example 10m or 30s). If set to 0, the CR is deleted  immediately. If omitted, the CR is retained. Failed moves are not deleted."
+        }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string",
+          "description": "Current state of the volume move operation."
+        },
+        "message": {
+          "type": "string",
+          "description": "Details about the current state or failure."
+        },
+        "initialAccessInfo": {
+          "type": "object",
+          "x-kubernetes-preserve-unknown-fields": true,
+          "description": "Access info captured before the move began. Set once during controller staging and never modified."
+        },
+        "targetAccessInfo": {
+          "type": "object",
+          "x-kubernetes-preserve-unknown-fields": true,
+          "description": "Updated access info capturing the desired attachment information throughout the volume move."
+        },
+        "attachments": {
+          "type": "array",
+          "description": "Live attachments that must be updated.",
+          "items": {
+            "type": "object",
+            "required": [
+              "node",
+              "state"
+            ],
+            "properties": {
+              "node": {
+                "type": "string",
+                "description": "The node where this volume is attached."
+              },
+              "state": {
+                "type": "string",
+                "description": "Current state of this node's attachment during the move."
+              },
+              "message": {
+                "type": "string",
+                "description": "Human-readable detail about this attachment's state."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "backendContext": {
+          "type": "object",
+          "x-kubernetes-preserve-unknown-fields": true,
+          "description": "Backend-specific context for the volume move."
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the move operation started."
+        },
+        "completionTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the move operation finished."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
