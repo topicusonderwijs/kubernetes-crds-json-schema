@@ -177,7 +177,7 @@
         "config": {
           "x-kubernetes-preserve-unknown-fields": true,
           "type": "object",
-          "description": "The Kafka Connect configuration. Properties with the following prefixes cannot be set: group.id, config.storage.topic, offset.storage.topic, status.storage.topic, ssl., sasl., security., listeners, plugin.path, rest., bootstrap.servers, consumer.interceptor.classes, producer.interceptor.classes, prometheus.metrics.reporter. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols)."
+          "description": "The Kafka Connect configuration. Properties with the following prefixes cannot be set: group.id, config.storage.topic, offset.storage.topic, status.storage.topic, ssl., sasl., security., listeners, plugin.path, rest., bootstrap.servers, consumer.interceptor.classes, producer.interceptor.classes, prometheus.metrics.reporter. (with the exception of: ssl.endpoint.identification.algorithm, ssl.cipher.suites, ssl.protocol, ssl.enabled.protocols, rest.extension.classes)."
         },
         "resources": {
           "type": "object",
@@ -1442,6 +1442,9 @@
                           "defaultMode": {
                             "type": "integer"
                           },
+                          "defaultUser": {
+                            "type": "integer"
+                          },
                           "items": {
                             "type": "array",
                             "items": {
@@ -1455,6 +1458,9 @@
                                 },
                                 "path": {
                                   "type": "string"
+                                },
+                                "user": {
+                                  "type": "integer"
                                 }
                               },
                               "additionalProperties": false
@@ -1476,6 +1482,9 @@
                           "defaultMode": {
                             "type": "integer"
                           },
+                          "defaultUser": {
+                            "type": "integer"
+                          },
                           "items": {
                             "type": "array",
                             "items": {
@@ -1489,6 +1498,9 @@
                                 },
                                 "path": {
                                   "type": "string"
+                                },
+                                "user": {
+                                  "type": "integer"
                                 }
                               },
                               "additionalProperties": false
@@ -1579,6 +1591,49 @@
                         },
                         "description": "`ImageVolumeSource` object to use to populate the volume.",
                         "additionalProperties": false
+                      },
+                      "projected": {
+                        "type": "object",
+                        "properties": {
+                          "sources": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "serviceAccountToken": {
+                                  "type": "object",
+                                  "properties": {
+                                    "audience": {
+                                      "type": "string"
+                                    },
+                                    "expirationSeconds": {
+                                      "type": "integer"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "user": {
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "description": "Information about the serviceAccountToken data to project.",
+                                  "additionalProperties": false
+                                }
+                              },
+                              "oneOf": [
+                                {
+                                  "properties": {
+                                    "serviceAccountToken": {}
+                                  }
+                                }
+                              ],
+                              "additionalProperties": false
+                            },
+                            "description": "List of projections that are part of this projected volumes. Currently, only Service Account projection is supported."
+                          }
+                        },
+                        "description": "`ProjectedVolume` object to use volume projection.",
+                        "additionalProperties": false
                       }
                     },
                     "oneOf": [
@@ -1589,7 +1644,8 @@
                           "emptyDir": {},
                           "persistentVolumeClaim": {},
                           "csi": {},
-                          "image": {}
+                          "image": {},
+                          "projected": {}
                         }
                       }
                     ],
@@ -1612,6 +1668,9 @@
                           "defaultMode": {
                             "type": "integer"
                           },
+                          "defaultUser": {
+                            "type": "integer"
+                          },
                           "items": {
                             "type": "array",
                             "items": {
@@ -1625,6 +1684,9 @@
                                 },
                                 "path": {
                                   "type": "string"
+                                },
+                                "user": {
+                                  "type": "integer"
                                 }
                               },
                               "additionalProperties": false
@@ -1646,6 +1708,9 @@
                           "defaultMode": {
                             "type": "integer"
                           },
+                          "defaultUser": {
+                            "type": "integer"
+                          },
                           "items": {
                             "type": "array",
                             "items": {
@@ -1659,6 +1724,9 @@
                                 },
                                 "path": {
                                   "type": "string"
+                                },
+                                "user": {
+                                  "type": "integer"
                                 }
                               },
                               "additionalProperties": false
@@ -2012,6 +2080,12 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "bindMountOptions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
                       "mountPath": {
                         "type": "string"
                       },
@@ -2249,6 +2323,12 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "bindMountOptions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
                       "mountPath": {
                         "type": "string"
                       },
@@ -3250,6 +3330,9 @@
                           "defaultMode": {
                             "type": "integer"
                           },
+                          "defaultUser": {
+                            "type": "integer"
+                          },
                           "items": {
                             "type": "array",
                             "items": {
@@ -3263,6 +3346,9 @@
                                 },
                                 "path": {
                                   "type": "string"
+                                },
+                                "user": {
+                                  "type": "integer"
                                 }
                               },
                               "additionalProperties": false
@@ -3284,6 +3370,9 @@
                           "defaultMode": {
                             "type": "integer"
                           },
+                          "defaultUser": {
+                            "type": "integer"
+                          },
                           "items": {
                             "type": "array",
                             "items": {
@@ -3297,6 +3386,9 @@
                                 },
                                 "path": {
                                   "type": "string"
+                                },
+                                "user": {
+                                  "type": "integer"
                                 }
                               },
                               "additionalProperties": false
@@ -3387,6 +3479,49 @@
                         },
                         "description": "`ImageVolumeSource` object to use to populate the volume.",
                         "additionalProperties": false
+                      },
+                      "projected": {
+                        "type": "object",
+                        "properties": {
+                          "sources": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "serviceAccountToken": {
+                                  "type": "object",
+                                  "properties": {
+                                    "audience": {
+                                      "type": "string"
+                                    },
+                                    "expirationSeconds": {
+                                      "type": "integer"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "user": {
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "description": "Information about the serviceAccountToken data to project.",
+                                  "additionalProperties": false
+                                }
+                              },
+                              "oneOf": [
+                                {
+                                  "properties": {
+                                    "serviceAccountToken": {}
+                                  }
+                                }
+                              ],
+                              "additionalProperties": false
+                            },
+                            "description": "List of projections that are part of this projected volumes. Currently, only Service Account projection is supported."
+                          }
+                        },
+                        "description": "`ProjectedVolume` object to use volume projection.",
+                        "additionalProperties": false
                       }
                     },
                     "oneOf": [
@@ -3397,7 +3532,8 @@
                           "emptyDir": {},
                           "persistentVolumeClaim": {},
                           "csi": {},
-                          "image": {}
+                          "image": {},
+                          "projected": {}
                         }
                       }
                     ],
@@ -3620,6 +3756,12 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "bindMountOptions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
                       "mountPath": {
                         "type": "string"
                       },
@@ -3753,7 +3895,7 @@
                   "items": {
                     "type": "string"
                   },
-                  "description": "Configures additional options to pass to the `build` command of either Kaniko or Buildah (depending on the feature gate setting) when building a new Kafka Connect image. Allowed Kaniko options: --customPlatform, --custom-platform, --insecure, --insecure-pull, --insecure-registry, --log-format, --log-timestamp, --registry-mirror, --reproducible, --single-snapshot, --skip-tls-verify, --skip-tls-verify-pull, --skip-tls-verify-registry, --verbosity, --snapshotMode, --use-new-run, --registry-certificate, --registry-client-cert, --ignore-path. Allowed Buildah `build` options: --authfile, --cert-dir, --creds, --decryption-key, --retry, --retry-delay, --tls-verify. Those options are used only on Kubernetes, where Kaniko and Buildah are available. They are ignored on OpenShift. For more information, see the link:https://github.com/GoogleContainerTools/kaniko[Kaniko GitHub repository^] or the link:https://github.com/containers/buildah/blob/main/docs/buildah-build.1.md[Buildah build document^]. Changing this field does not trigger a rebuild of the Kafka Connect image."
+                  "description": "Configures additional options to pass to the `build` command of Buildah when building a new Kafka Connect image. Allowed Buildah `build` options: --authfile, --cert-dir, --creds, --decryption-key, --retry, --retry-delay, --tls-verify. Those options are used only on Kubernetes, where Buildah is available. They are ignored on OpenShift. For more information, see the link:https://github.com/containers/buildah/blob/main/docs/buildah-build.1.md[Buildah build document^]. Changing this field does not trigger a rebuild of the Kafka Connect image."
                 },
                 "additionalPushOptions": {
                   "type": "array",

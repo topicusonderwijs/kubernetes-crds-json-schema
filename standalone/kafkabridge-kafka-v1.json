@@ -1509,6 +1509,9 @@
                           "defaultMode": {
                             "type": "integer"
                           },
+                          "defaultUser": {
+                            "type": "integer"
+                          },
                           "items": {
                             "type": "array",
                             "items": {
@@ -1522,6 +1525,9 @@
                                 },
                                 "path": {
                                   "type": "string"
+                                },
+                                "user": {
+                                  "type": "integer"
                                 }
                               },
                               "additionalProperties": false
@@ -1543,6 +1549,9 @@
                           "defaultMode": {
                             "type": "integer"
                           },
+                          "defaultUser": {
+                            "type": "integer"
+                          },
                           "items": {
                             "type": "array",
                             "items": {
@@ -1556,6 +1565,9 @@
                                 },
                                 "path": {
                                   "type": "string"
+                                },
+                                "user": {
+                                  "type": "integer"
                                 }
                               },
                               "additionalProperties": false
@@ -1646,6 +1658,49 @@
                         },
                         "description": "`ImageVolumeSource` object to use to populate the volume.",
                         "additionalProperties": false
+                      },
+                      "projected": {
+                        "type": "object",
+                        "properties": {
+                          "sources": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "serviceAccountToken": {
+                                  "type": "object",
+                                  "properties": {
+                                    "audience": {
+                                      "type": "string"
+                                    },
+                                    "expirationSeconds": {
+                                      "type": "integer"
+                                    },
+                                    "path": {
+                                      "type": "string"
+                                    },
+                                    "user": {
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "description": "Information about the serviceAccountToken data to project.",
+                                  "additionalProperties": false
+                                }
+                              },
+                              "oneOf": [
+                                {
+                                  "properties": {
+                                    "serviceAccountToken": {}
+                                  }
+                                }
+                              ],
+                              "additionalProperties": false
+                            },
+                            "description": "List of projections that are part of this projected volumes. Currently, only Service Account projection is supported."
+                          }
+                        },
+                        "description": "`ProjectedVolume` object to use volume projection.",
+                        "additionalProperties": false
                       }
                     },
                     "oneOf": [
@@ -1656,7 +1711,8 @@
                           "emptyDir": {},
                           "persistentVolumeClaim": {},
                           "csi": {},
-                          "image": {}
+                          "image": {},
+                          "projected": {}
                         }
                       }
                     ],
@@ -1960,6 +2016,12 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "bindMountOptions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
                       "mountPath": {
                         "type": "string"
                       },
@@ -2253,6 +2315,12 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "bindMountOptions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
                       "mountPath": {
                         "type": "string"
                       },
