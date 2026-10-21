@@ -23,9 +23,12 @@ function get_crds_from_latest_release() {
   # Fetch 'latest' release
   tag=$(gh release list -R $1 --exclude-drafts --exclude-pre-releases --jq '.[]|select(.name|startswith("helm-chart")|not)|select(.tagName|test("'$PRERELEASE_TAG_RE'";"i")|not)' --json name,tagName -L 100 | jq -rn '. |= [inputs] | first | .tagName')
   version=${tag#v}
-  asset=${2/__version__/$version}
-  gh release download $tag -R $1 -p $asset -D "$tmp_dir/$1"
-  schemas+=( "/crds/$1/$asset" )
+  # The asset pattern may be a glob (e.g. 'kyverno.io_*.yaml') matching multiple assets
+  pattern=${2/__version__/$version}
+  gh release download $tag -R $1 -p "$pattern" -D "$tmp_dir/$1"
+  for f in "$tmp_dir/$1/"$pattern; do
+    schemas+=( "/crds/$1/$(basename "$f")" )
+  done
 }
 
 declare -a schemas
@@ -36,8 +39,10 @@ get_crds_from_latest_release "argoproj/argo-workflows" "install.yaml"
 get_crds_from_latest_release "cloudnative-pg/cloudnative-pg" "cnpg-__version__.yaml"
 get_crds_from_latest_release "external-secrets/external-secrets" "external-secrets.yaml"
 get_crds_from_latest_release "jetstack/cert-manager" "cert-manager.crds.yaml"
-get_crds_from_latest_release "kyverno/kyverno" "kyverno.io_clusterpolicies.yaml"
-get_crds_from_latest_release "kyverno/kyverno" "kyverno.io_policies.yaml"
+get_crds_from_latest_release "kyverno/kyverno" "kyverno.io_*.yaml"
+get_crds_from_latest_release "kyverno/kyverno" "policies.kyverno.io_*.yaml"
+get_crds_from_latest_release "kyverno/kyverno" "reports.kyverno.io_*.yaml"
+get_crds_from_latest_release "kyverno/kyverno" "wgpolicyk8s.io_*.yaml"
 get_crds_from_latest_release "strimzi/strimzi-kafka-operator" "strimzi-crds-__version__.yaml"
 get_crds_from_latest_release "topicusonderwijs/nats-account-operator" "crds.yaml"
 get_crds_from_latest_release "topicusonderwijs/nats-jetstream-operator" "crds.yaml"
