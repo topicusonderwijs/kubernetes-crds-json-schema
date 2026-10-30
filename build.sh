@@ -31,6 +31,14 @@ function get_crds_from_latest_release() {
   done
 }
 
+function get_crds_from_latest_tag() {
+  # Fetch a file at the 'latest' release tag through the API, so private repos work too
+  tag=$(get_latest_release $1)
+  mkdir -p "$tmp_dir/$1"
+  gh api "repos/$1/contents/$2?ref=$tag" -H "Accept: application/vnd.github.raw" > "$tmp_dir/$1/$(basename "$2")"
+  schemas+=( "/crds/$1/$(basename "$2")" )
+}
+
 declare -a schemas
 
 # Add CRDs from latest GitHub release, including private repos
@@ -46,6 +54,9 @@ get_crds_from_latest_release "kyverno/kyverno" "wgpolicyk8s.io_*.yaml"
 get_crds_from_latest_release "strimzi/strimzi-kafka-operator" "strimzi-crds-__version__.yaml"
 get_crds_from_latest_release "topicusonderwijs/nats-account-operator" "crds.yaml"
 get_crds_from_latest_release "topicusonderwijs/nats-jetstream-operator" "crds.yaml"
+
+# Add CRDs from a repo path at the latest release tag, including private repos
+get_crds_from_latest_tag "topicusonderwijs/project-resource-quota-operator" "config/crd/bases/quota.topicus.education_projectresourcequotas.yaml"
 
 # Add CRDs from GitHub tag
 schemas+=( "https://raw.githubusercontent.com/grafana/alloy/$(get_latest_release "grafana/alloy")/operations/helm/charts/alloy/charts/crds/crds/monitoring.grafana.com_podlogs.yaml" )
