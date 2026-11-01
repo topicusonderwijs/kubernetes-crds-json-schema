@@ -29,7 +29,7 @@
         "deleteAfterSuccess": {
           "type": "string",
           "format": "duration",
-          "description": "When set, this CR will be automatically deleted after this interval after the move is  completed successfully (for example 10m or 30s). If set to 0, the CR is deleted  immediately. If omitted, the CR is retained. Failed moves are not deleted."
+          "description": "When set, this CR will be automatically deleted after this interval after the move is completed successfully (for example 10m or 30s). If set to 0, the CR is deleted immediately. If omitted, the CR is retained. Failed moves are not deleted."
         }
       },
       "additionalProperties": false
